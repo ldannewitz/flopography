@@ -2,7 +2,6 @@ var scene, camera, renderer;
 var geometry, material, mesh;
 var boxes = [];
 var radius = 2000;
-var nBoxes = 5;
 
  // init();
  // animate();
@@ -10,7 +9,7 @@ var nBoxes = 5;
 
 function init() {
 
-  console.log(sliderValue);
+  var nBoxes = countSliderValue;
 
     scene = new THREE.Scene();
 
@@ -19,7 +18,7 @@ function init() {
     camera.position.set(-500, 500, 1000);
     camera.lookAt(scene.position);
 
-    geometry = new THREE.BoxGeometry(200, sliderValue * 9, 200);
+    geometry = new THREE.BoxGeometry(200, rangeSliderValue * 9, 200);
     material = new THREE.MeshLambertMaterial({
         color: 0xccccff,
         wireframe: false
@@ -63,21 +62,21 @@ function init() {
     var ren = document.body.lastChild;
 
 
-    // this will probably bite me in the ass later 
+    // this will probably bite me in the ass later
     document.body.removeChild(ren);
     document.body.appendChild(renderer.domElement);
 
 }
 
-function animate(input) {
+function animate() {
 
     requestAnimationFrame(animate);
 
-    for(var i = 0; i < boxes.length; i++) {
+    // for(var i = 0; i < boxes.length; i++) {
       //console.log(boxes[i].scale.z );
       //this one does a thing!
       //boxes[i].scale.z = input;
-    }
+    // }
 
     //begin here
     // for(var i =0; i<boxes.length; i++){

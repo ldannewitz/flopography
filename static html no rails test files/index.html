@@ -11,16 +11,26 @@
     <script src="js/application.js"></script>
 
     <input type="range" id="myRange" value="90">
-    <button onclick="myFunction()">number me</button>
-    <p id="demo"></p>
+    <button onclick="rangeFunc()">number me</button>
+    <p id="range"></p>
 
+    <input type="range" id="myCount" value="20">
+    <button onclick="countFunc()">number me</button>
+    <p id="count"></p>
 
     <script>
-        function myFunction() {
-            sliderValue = document.getElementById("myRange").value;
-            document.getElementById("demo").innerHTML = sliderValue;
+        function rangeFunc() {
+            rangeSliderValue = document.getElementById("myRange").value;
+            document.getElementById("range").innerHTML = rangeSliderValue;
             init();
-            animate(sliderValue);
+            animate();
+        }
+
+        function countFunc() {
+            countSliderValue = document.getElementById("myCount").value;
+            document.getElementById("count").innerHTML = countSliderValue;
+            init();
+            animate();
         }
 
     </script>
