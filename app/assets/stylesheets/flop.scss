@@ -1,0 +1,41 @@
+ /*Place all the styles related to the Flop controller here.*/
+ /*They will automatically be included in application.css.*/
+ /*You can use Sass (SCSS) here: http://sass-lang.com/*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #ccccff;
+  font-family: Raleway;
+}
+
+p {
+  display: inline;
+  margin-right: 1%;
+}
+
+input {
+  width: 15%;
+}
+
+label {
+  margin-left: 1%;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  background-color: #ccccff;
+  padding: 0.25% 0 0.25% 1%;
+}
+
+#siteName {
+  font-weight: 700;
+}
+
+canvas {
+  display: block;
+}
