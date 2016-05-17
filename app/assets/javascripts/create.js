@@ -17,7 +17,8 @@ function init() {
     // shape of ground
     var groundGeo = new THREE.PlaneGeometry(5000,5000,0);
     // visual aspects of ground
-    var material = new THREE.MeshBasicMaterial( {color: 0x99ccff, side: THREE.DoubleSide} );
+    // ligth blue = 99ccff
+    var material = new THREE.MeshBasicMaterial( {color: 0x9DCC8F, side: THREE.DoubleSide} );
     // puts them together to render
     var plane = new THREE.Mesh( groundGeo, material );
     // in radians
@@ -58,8 +59,11 @@ function init() {
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    // setSize(window.innerWidth/2, window.innerHeight/2, false) will render app at half resolution
+
     //renderer = new THREE.WebGLRenderer( { alpha: true } ) // makes bg transparent but in a really weird way
-    renderer.setClearColor(0xf2f2f2, 1); //testing this shit for a transparent background
+    // renderer.setClearColor(0xf2f2f2, 1); //testing this shit for a transparent background
+    renderer.setClearColor(0xBFE1FF, 1); // blue sky
 
     var ren = document.body.lastChild;
 
