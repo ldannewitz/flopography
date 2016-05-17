@@ -5,14 +5,15 @@ var radius = 2000;
 
 function init() {
 
-    var nBoxes = countSliderValue / 2;
+    var nBoxes = countSliderValue * 2;
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 10000);
+    // first # 0-180 stretches the Z view (181-360 = upside down)
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
     // camera.position.z = 1000;
-    camera.position.set(400, 300, 350);
-    camera.lookAt(scene.position.z);
+    camera.position.set(0, 1000, 3500);
+    camera.lookAt(scene.position);
 
     // shape of ground
     var groundGeo = new THREE.PlaneGeometry(5000,5000,0);
@@ -30,8 +31,8 @@ function init() {
 
     // set its position
     pointLight.position.x = -400;
-    pointLight.position.y = 400;
-    pointLight.position.z = 700;
+    pointLight.position.y = 800;
+    pointLight.position.z = 400;
 
     // add to the scene
     scene.add(pointLight);
@@ -44,15 +45,17 @@ function init() {
     });
 
     for (var i = 0; i < nBoxes; i++) {
-        geometry = new THREE.BoxGeometry(200, heightSliderValue * Math.random() * 12, 200);
+        geometry = new THREE.BoxGeometry(200, heightSliderValue * Math.random() * 15, 200);
 
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
-        var first = Math.random()*1200;
-        var third =Math.random()*-900;
+        var negatives = [-1, 1]
+        var first = Math.random() * 2300 * negatives.sample();
+        var third = Math.random() * 2300 * negatives.sample();
         //boxes[i].scale.z = input;
 
+        // x,y,z?
         mesh.position.set(first, 0, third);
         boxes.push(mesh);
     }
@@ -105,5 +108,8 @@ function animate() {
     // }
 
     renderer.render(scene, camera);
+}
 
+Array.prototype.sample = function() {
+  return this[~~(Math.random() * this.length)];
 }

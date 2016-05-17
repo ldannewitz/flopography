@@ -14,8 +14,8 @@ $(document).ready(function(){
 
   // Number slider updates
   $('body').on('change', '#boxCount', function(){
-    heightSliderValue = document.getElementById("boxCount").value;
-    document.getElementById("count").innerHTML = heightSliderValue;
+    countSliderValue = document.getElementById("boxCount").value;
+    document.getElementById("count").innerHTML = countSliderValue;
     init();
     animate();
   })
