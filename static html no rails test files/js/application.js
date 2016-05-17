@@ -5,13 +5,13 @@ var radius = 2000;
 
 function init() {
 
-    var nBoxes = countSliderValue / 5;
+    var nBoxes = countSliderValue / 2;
 
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 10000);
     // camera.position.z = 1000;
-    camera.position.set(400, 300, 300);
+    camera.position.set(400, 300, 350);
     camera.lookAt(scene.position.z);
 
     // shape of ground
@@ -76,8 +76,6 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
-
-
 
 function animate() {
 
