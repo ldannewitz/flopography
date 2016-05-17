@@ -9,26 +9,25 @@ var radius = 2000;
 
 function init() {
 
-  var nBoxes = countSliderValue;
+  var nBoxes = countSliderValue / 5;
 
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     // camera.position.z = 1000;
-    camera.position.set(-500, 500, 1000);
-    camera.lookAt(scene.position);
+    camera.position.set(400, 300, 700);
+    camera.lookAt(scene.position.z);
 
-    geometry = new THREE.BoxGeometry(200, rangeSliderValue * 9, 200);
-    material = new THREE.MeshLambertMaterial({
-        color: 0xccccff,
-        wireframe: false
-    });
+    var groundGeo = new THREE.PlaneGeometry(5000,5000,0);
+    var material = new THREE.MeshBasicMaterial( {color: 0x99ccff, side: THREE.DoubleSide} );
+    var plane = new THREE.Mesh( groundGeo, material );
+    plane.rotation.x = 1.58;
+    scene.add( plane );
 
 
-    // mesh = new THREE.Mesh(geometry, material);
-    // mesh.position.set(300, 0, 0);
-    //
-    // scene.add(mesh);
+
+
+
 
     // create a point light
     var pointLight = new THREE.PointLight(0xFFFFFF);
@@ -36,18 +35,33 @@ function init() {
     // set its position
     pointLight.position.x = -400;
     pointLight.position.y = 400;
-    pointLight.position.z = 200;
+    pointLight.position.z = 700;
 
     // add to the scene
     scene.add(pointLight);
     var light = new THREE.AmbientLight(0x404040); // soft white light -- im testing this line and the next
     scene.add(light);
 
+    // geometry = new THREE.BoxGeometry(200, rangeSliderValue * 9, 200);
+    material = new THREE.MeshLambertMaterial({
+        color: 0xccccff,
+        wireframe: false
+    });
+
     counter = 0;
     for (var i = 0; i < nBoxes; i++) {
+        geometry = new THREE.BoxGeometry(200, rangeSliderValue * Math.random() * 7, 200);
+
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
-        mesh.position.set(counter,0,0);
+
+        var first = Math.random()*1200;
+        var third =Math.random()*-900;
+        //boxes[i].scale.z = input;
+
+
+
+        mesh.position.set(first, 0, third);
         counter += 300;
         boxes.push(mesh);
     }
