@@ -5,14 +5,14 @@ var radius = 2000;
 
 function init() {
 
-    var nBoxes = countSliderValue * 2;
+    var nBoxes = countSliderValue * 4;
 
     scene = new THREE.Scene();
 
     // first # 0-180 stretches the Z view (181-360 = upside down)
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
     // camera.position.z = 1000;
-    camera.position.set(0, 1000, 3500);
+    camera.position.set(0, 1000, 3400);
     camera.lookAt(scene.position);
 
     // shape of ground
@@ -30,8 +30,8 @@ function init() {
     var pointLight = new THREE.PointLight(0xFFFFFF);
 
     // set its position
-    pointLight.position.x = -400;
-    pointLight.position.y = 800;
+    pointLight.position.x = -900;
+    pointLight.position.y = 1500;
     pointLight.position.z = 400;
 
     // add to the scene
@@ -39,13 +39,21 @@ function init() {
     var light = new THREE.AmbientLight(0x404040); // soft white light
     scene.add(light);
 
+    var texture       = new THREE.Texture( generateTexture() );
+    console.log(texture);
+    // texture.anisotropy = renderer.getMaxAnisotropy();
+    texture.needsUpdate    = true;
+
+
     material = new THREE.MeshLambertMaterial({
+        map: texture,
         color: 0xccccff,
         wireframe: false
     });
 
     for (var i = 0; i < nBoxes; i++) {
-        geometry = new THREE.BoxGeometry(200, heightSliderValue * Math.random() * 15, 200);
+        geometry = new THREE.CubeGeometry(200, (200 + heightSliderValue * Math.random() * 15), 200);
+        // geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0, 0.5, 0 ) );
 
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
@@ -112,4 +120,38 @@ function animate() {
 
 Array.prototype.sample = function() {
   return this[~~(Math.random() * this.length)];
+}
+
+function generateTexture() {
+  // build a small canvas 32x64 and paint it in white
+  var canvas  = document.createElement( 'canvas' );
+  canvas.width = 32;
+  canvas.height    = 64;
+  var context = canvas.getContext( '2d' );
+  // plain it in white
+  context.fillStyle    = '#ffffff';
+  context.fillRect( 0, 0, 32, 64 );
+  // draw the window rows - with a small noise to simulate light variations in each room
+  for( var y = 2; y < 64; y += 2 ){
+    for( var x = 0; x < 32; x += 2 ){
+      var value   = Math.floor( Math.random() * 64 );
+      context.fillStyle = 'rgb(' + [value, value, value].join( ',' )  + ')';
+      context.fillRect( x, y, 2, 1 );
+    }
+  }
+
+  // build a bigger canvas and copy the small one in it
+  // This is a trick to upscale the texture without filtering
+  var canvas2 = document.createElement( 'canvas' );
+  canvas2.width    = 512;
+  canvas2.height   = 1024;
+  var context = canvas2.getContext( '2d' );
+  // disable smoothing
+  context.imageSmoothingEnabled        = false;
+  // context.webkitImageSmoothingEnabled  = false;
+  context.mozImageSmoothingEnabled = false;
+  // then draw the image
+  context.drawImage( canvas, 0, 0, canvas2.width, canvas2.height );
+  // return the just built canvas2
+  return canvas2;
 }
