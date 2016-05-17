@@ -7,21 +7,31 @@
     <script src="js/three.min.js"></script>
     <script src="js/application.js"></script>
     <script src="js/jquery.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,800,900' rel='stylesheet' type='text/css'>
     <style>
-      body { margin: 0; }
-      p { display: inline; }
+      * { box-sizing: border-box;}
+      body { margin: 0; background-color: #ccccff; font-family: Raleway;. height: 100%; width: 100%;}
+      p { display: inline; margin-right: 1%; }
+      input { width: 15%; }
+      label { margin-left: 1%;}
+      header {padding: 0.25% 0 0.25% 1%; position: fixed; top:0; background-color: #ccccff; width: 100%;}
+      #siteName { font-weight: 700; }
+      canvas {display: block;}
     </style>
 </head>
 
 <body>
-    <!-- height of boxes -->
-    <label for="height">Adjust Building Height:</label>
-    <input type="range" id="maxBoxHeight" value="90">
-    <p id="height">90</p>
+    <header>
+      <p id='siteName'>Flopography</p>
+      <!-- height of boxes -->
+      <label for="height">Adjust Building Height:</label>
+      <input type="range" id="maxBoxHeight" value="90">
+      <p id="height">90</p>
 
-    <!-- number of boxes -->
-    <label for="number">Adjust # of Buildings:</label>
-    <input type="range" id="boxCount" value="80">
-    <p id="count">80</p>
+      <!-- number of boxes -->
+      <label for="number">Adjust Number of Buildings:</label>
+      <input type="range" id="boxCount" value="80">
+      <p id="count">80</p>
+    </header>
 </body>
 </html>
