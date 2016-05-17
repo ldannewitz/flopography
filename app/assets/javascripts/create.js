@@ -8,6 +8,7 @@ function init() {
     var nBoxes = countSliderValue * 4;
 
     scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2( 0xf2f2f2, 0.00035 );
 
     // first # 0-180 stretches the Z view (181-360 = upside down)
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
