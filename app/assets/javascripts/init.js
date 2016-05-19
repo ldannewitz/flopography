@@ -18,13 +18,15 @@ function init() {
   $(container).addClass('container');
   document.body.appendChild( container );
 
-  // controls = new THREE.FlyControls( camera );
-  // controls.movementSpeed = 1000;
-  // controls.domElement = container;
-  // // controls.domElement = document.getElementById('container');
-  // controls.rollSpeed = Math.PI / 24;
-  // controls.autoForward = false;
-  // controls.dragToLook = false;
+  if (flyActive) {
+    controls = new THREE.FlyControls( camera );
+    // controls.movementSpeed = 1000;
+    controls.domElement = container;
+    // // controls.domElement = document.getElementById('container');
+    // controls.rollSpeed = Math.PI / 24;
+    // controls.autoForward = false;
+    // controls.dragToLook = false;
+  }
 
   var groundGeo = new THREE.PlaneGeometry(5000,5000,0); // shape of ground
   // visual aspects of ground (light blue = 99ccff)
