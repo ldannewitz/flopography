@@ -3,7 +3,7 @@ var scene, camera, renderer;
 var geometry, material, building;
 var boxes = [];
 var clock = new THREE.Clock();
-var controls;
+// var controls;
 
 function init() {
 
@@ -21,14 +21,11 @@ function init() {
   document.body.appendChild( container );
 
   if (flyActive) {
-    controls = new THREE.FlyControls( camera );
+    controls = new THREE.FlyControls( camera, container );
     controls.movementSpeed = 600;
-    controls.domElement = container;
-    // controls.domElement = document.getElementById('container');
+    // controls.domElement = container;
     // controls.rollSpeed = Math.PI / 24;
     controls.rollSpeed = .4;
-    controls.autoForward = false;
-    controls.dragToLook = false;
   }
 
   var groundGeo = new THREE.PlaneGeometry(5000,5000,0); // shape of ground
