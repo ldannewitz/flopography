@@ -20,6 +20,12 @@ function animate() {
   //     }
   //
   // }
+  if (flyActive) { render() }
 
   renderer.render(scene, camera);
+}
+
+function render() {
+  var delta = clock.getDelta();
+  controls.update( delta );
 }

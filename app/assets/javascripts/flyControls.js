@@ -59,8 +59,8 @@ THREE.FlyControls = function ( object, domElement ) {
       case 38: /*up*/ this.moveState.pitchUp = 1; break;
       case 40: /*down*/ this.moveState.pitchDown = 1; break;
 
-      case 37: /*left*/ this.moveState.yawLeft = 1; break;
-      case 39: /*right*/ this.moveState.yawRight = 1; break;
+      case 37: /*left*/ this.moveState.yawLeft = 2; break;
+      case 39: /*right*/ this.moveState.yawRight = 2; break;
 
       case 81: /*Q*/ this.moveState.rollLeft = 1; break;
       case 69: /*E*/ this.moveState.rollRight = 1; break;
