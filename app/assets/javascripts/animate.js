@@ -23,3 +23,8 @@ function animate() {
   render();
   renderer.render(scene, camera);
 }
+
+function render() {
+  var delta = clock.getDelta();
+  controls.update( delta );
+}

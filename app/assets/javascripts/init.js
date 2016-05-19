@@ -22,10 +22,11 @@ function init() {
 
   // if (flyActive) {}
     controls = new THREE.FlyControls( camera );
-    controls.movementSpeed = 1000;
+    controls.movementSpeed = 600;
     controls.domElement = container;
     // controls.domElement = document.getElementById('container');
-    controls.rollSpeed = Math.PI / 24;
+    // controls.rollSpeed = Math.PI / 24;
+    controls.rollSpeed = .5;
     controls.autoForward = false;
     controls.dragToLook = false;
 
@@ -93,11 +94,4 @@ function init() {
   $('div.container').append(renderer.domElement);
 
   window.addEventListener( 'resize', onWindowResize, false );
-}
-
-function render() {
-  var delta = clock.getDelta();
-  console.log(delta)
-  console.log(controls)
-  controls.update( delta );
 }
