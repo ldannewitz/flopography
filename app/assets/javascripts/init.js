@@ -1,7 +1,7 @@
-var scene, camera, renderer;
+
+var scene, camera, controls, renderer;
 var geometry, material, building;
 var boxes = [];
-var radius = 2000; // we aren't using this
 
 function init() {
 
@@ -12,6 +12,19 @@ function init() {
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.set(0, 1000, 3400);
   camera.lookAt(scene.position);
+
+  $('div.container').remove();
+  var container = document.createElement( 'div' );
+  $(container).addClass('container');
+  document.body.appendChild( container );
+
+  // controls = new THREE.FlyControls( camera );
+  // controls.movementSpeed = 1000;
+  // controls.domElement = container;
+  // // controls.domElement = document.getElementById('container');
+  // controls.rollSpeed = Math.PI / 24;
+  // controls.autoForward = false;
+  // controls.dragToLook = false;
 
   var groundGeo = new THREE.PlaneGeometry(5000,5000,0); // shape of ground
   // visual aspects of ground (light blue = 99ccff)
@@ -34,7 +47,7 @@ function init() {
   scene.add(light);
 
   // create texture for sides of buildings
-  var texture       = new THREE.Texture( generateTexture() );
+  var texture = new THREE.Texture( generateTexture() );
   // texture.anisotropy = renderer.getMaxAnisotropy();
   texture.needsUpdate    = true;
 
@@ -70,12 +83,10 @@ function init() {
   // renderer.setClearColor(0xf2f2f2, 1); //testing this shit for a transparent background
   renderer.setClearColor(0xBFE1FF, 1); // blue sky
 
-  var ren = document.body.lastChild;
-
   // this will probably bite me in the ass later
   // try to update existing?
-  document.body.removeChild(ren);
-  document.body.appendChild(renderer.domElement);
+  // document.div.removeChild(oldCanvas);
+  $('div.container').append(renderer.domElement);
 
   window.addEventListener( 'resize', onWindowResize, false );
 }
