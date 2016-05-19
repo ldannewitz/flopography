@@ -1,11 +1,12 @@
 $(document).ready(function(){
   heightSliderValue = document.getElementById("maxBoxHeight").value;
   countSliderValue = document.getElementById("boxCount").value;
+  flyActive = false;
   init();
   animate();
 
   // Height slider updates
-  $('body').on('change', '#maxBoxHeight', function(){
+  $('#maxBoxHeight').on('change', function(){
     heightSliderValue = document.getElementById("maxBoxHeight").value;
     document.getElementById("height").innerHTML = heightSliderValue;
     init();
@@ -13,9 +14,16 @@ $(document).ready(function(){
   })
 
   // Number slider updates
-  $('body').on('change', '#boxCount', function(){
+  $('#boxCount').on('change', function(){
     countSliderValue = document.getElementById("boxCount").value;
     document.getElementById("count").innerHTML = countSliderValue;
+    init();
+    animate();
+  })
+
+  // Fly button
+  $('#fly').on('click', function(){
+    flyActive = true;
     init();
     animate();
   })
