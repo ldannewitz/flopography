@@ -20,7 +20,8 @@ function animate() {
   //     }
   //
   // }
-  render();
+  if (flyActive) { render() }
+
   renderer.render(scene, camera);
 }
 

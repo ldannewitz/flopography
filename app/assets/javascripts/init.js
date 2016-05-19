@@ -20,7 +20,7 @@ function init() {
   $(container).addClass('container');
   document.body.appendChild( container );
 
-  // if (flyActive) {}
+  if (flyActive) {
     controls = new THREE.FlyControls( camera );
     controls.movementSpeed = 600;
     controls.domElement = container;
@@ -29,7 +29,7 @@ function init() {
     controls.rollSpeed = .5;
     controls.autoForward = false;
     controls.dragToLook = false;
-
+  }
 
   var groundGeo = new THREE.PlaneGeometry(5000,5000,0); // shape of ground
   // visual aspects of ground (light blue = 99ccff)
