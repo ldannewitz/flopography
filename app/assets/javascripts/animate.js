@@ -20,6 +20,6 @@ function animate() {
   //     }
   //
   // }
-
+  render();
   renderer.render(scene, camera);
 }
