@@ -29,6 +29,11 @@ $(document).ready(function(){
   })
 
   $(document).on('keyup', function(e){
-    if (e.keyCode === 27) { flyActive = false };
+    if (e.keyCode === 27) {
+      flyActive = false;
+      init();
+      animate();
+    };
+
   })
 })

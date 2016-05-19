@@ -26,7 +26,7 @@ function init() {
     controls.domElement = container;
     // controls.domElement = document.getElementById('container');
     // controls.rollSpeed = Math.PI / 24;
-    controls.rollSpeed = .5;
+    controls.rollSpeed = .4;
     controls.autoForward = false;
     controls.dragToLook = false;
   }
