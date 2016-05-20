@@ -28,18 +28,21 @@ function generateTexture() {
   // draw the window rows - with a small noise to simulate light variations in each room
   for (var y = 2; y < 64; y += 2) {
     for (var x = 0; x < 32; x += 2) {
-      // var value = Math.floor(Math.random() * 64);
-      if ([-1, 1].sample() == 1){
-        var value1 = Math.floor(Math.random() * 64);
-        var value2 = Math.floor(Math.random() * 64);
-        var value3 = Math.floor(Math.random() * 64);
-      } else {
-        var value1 = rangeArray(222, 255).sample();
-        var value2 = rangeArray(210, 230).sample();
-        var value3 = rangeArray(10, 25).sample();
+      if (mode === 'day'){
+        var value = Math.floor(Math.random() * 64);
+        context.fillStyle = 'rgb(' + [value, value, value].join(',') + ')';
+      } else if (mode === 'night'){
+        if ([-1, 1].sample() == 1){
+          var value1 = Math.floor(Math.random() * 64);
+          var value2 = Math.floor(Math.random() * 64);
+          var value3 = Math.floor(Math.random() * 64);
+        } else {
+          var value1 = rangeArray(222, 255).sample();
+          var value2 = rangeArray(210, 230).sample();
+          var value3 = rangeArray(10, 25).sample();
+        }
+        context.fillStyle = 'rgb(' + [value1, value2, value3].join(',') + ')';
       }
-      console.log(value1, value2, value3)
-      context.fillStyle = 'rgb(' + [value1, value2, value3].join(',') + ')';
       context.fillRect(x, y, 2, 1);
     }
   }
