@@ -23,15 +23,19 @@ function animate() {
   if (flyActive) {
     render();
     console.log(controls.object.position)
-    if (controls.object.position.x >= 5500) {
+    if (controls.object.position.x >= 5300) {
       console.log("hit the x if")
       controls.object.position.x = -5000
-    } else if (controls.object.position.x <= -5500) {
+    } else if (controls.object.position.x <= -5300) {
       controls.object.position.x = 5000
-    } else if (controls.object.position.z >= 5500) {
+    } else if (controls.object.position.z >= 5300) {
       controls.object.position.z = -5000
-    } else if (controls.object.position.z <= -5500) {
-      controls.object.position.z = 55000
+    } else if (controls.object.position.z <= -5300) {
+      controls.object.position.z = 5000
+    } else if (controls.object.position.y <= 0) {
+      controls.object.position.y = 2000
+    } else if (controls.object.position.y >= 6500) {
+      controls.object.position.y = 1
     }
   }
 

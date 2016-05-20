@@ -73,8 +73,8 @@ function init() {
     scene.add(building);
 
     var negatives = [-1, 1]
-    var first = Math.random() * 4300 * negatives.sample();
-    var third = Math.random() * 4300 * negatives.sample();
+    var first = Math.random() * 4800 * negatives.sample();
+    var third = Math.random() * 4800 * negatives.sample();
     //boxes[i].scale.z = input;
 
     // geometry.faceVertexUvs[0][2][0].set( 0, 0 );
