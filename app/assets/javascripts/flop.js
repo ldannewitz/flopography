@@ -2,6 +2,7 @@ $(document).ready(function(){
   heightSliderValue = document.getElementById("maxBoxHeight").value;
   countSliderValue = document.getElementById("boxCount").value;
   flyActive = false;
+  mode = 'day';
   init();
   animate();
 
@@ -39,4 +40,19 @@ $(document).ready(function(){
       $('#esc').remove();
     };
   })
+
+  $(".timeToggle").on('click', function(){
+    if ($(this).data("mode") == "night") {
+      $(this).data("mode", "day")
+      $(this).text('Day Mode');
+      mode = 'night';
+    } else {
+      $(this).data("mode", "night")
+      $(this).text('Night Mode');
+      mode = 'day';
+    }
+    init();
+    animate();
+  })
+
 })

@@ -8,8 +8,14 @@ var clock = new THREE.Clock();
 function init() {
 
   scene = new THREE.Scene();
-  //scene.fog = new THREE.FogExp2( 0xf2f2f2, 0.00035 ); //f2f2f2 ff9999 (red glow)
-  scene.fog = new THREE.FogExp2( 0x332424, 0.00035 ); //f2f2f2 ff9999 (red glow)
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  if (mode === 'day'){
+    createDayScene();
+  } else if (mode === 'night'){
+    createNightScene();
+  }
 
   // first #: 0-180 stretches the Z view (181-360 = upside down)
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
@@ -24,16 +30,12 @@ function init() {
   if (flyActive) {
     controls = new THREE.FlyControls( camera, container );
     controls.movementSpeed = 600;
-    // controls.domElement = container;
     // controls.rollSpeed = Math.PI / 24;
     controls.rollSpeed = .4;
   }
 
   var groundGeo = new THREE.PlaneGeometry(10000,10000,0); // shape of ground
-  // visual aspects of ground (light blue = 99ccff)
-  // ground used to be 9DCC8F
-  var material = new THREE.MeshBasicMaterial( {color: 0x2A2A2A, side: THREE.DoubleSide} );
-  // puts them together to render
+  // puts ground shape & color together to render
   var plane = new THREE.Mesh( groundGeo, material );
   plane.rotation.x = 1.58; // in radians
   scene.add(plane);
@@ -45,7 +47,6 @@ function init() {
   // set point light position
   pointLight.position.set(-900, 1500, 400);
 
-
   // add point light to the scene
   scene.add(pointLight);
 
@@ -54,7 +55,6 @@ function init() {
 
   // create texture for sides of buildings
   var texture = new THREE.Texture( generateTexture() );
-  // texture.anisotropy = renderer.getMaxAnisotropy();
   texture.needsUpdate    = true;
 
   // set material for sides of buildings
@@ -82,23 +82,13 @@ function init() {
     // geometry.faceVertexUvs[0][2][2].set( 0, 0 );
     // geometry.faceVertexUvs[0][2][3].set( 0, 0 );
 
-
     building.position.set(first, 0, third);
     boxes.push(building);
   }
 
-  renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
   // setSize(window.innerWidth/2, window.innerHeight/2, false) will render app at half resolution
 
-  //renderer = new THREE.WebGLRenderer( { alpha: true } ) // makes bg transparent but in a really weird way
-  // renderer.setClearColor(0xf2f2f2, 1); //testing this shit for a transparent background
-  //renderer.setClearColor(0xBFE1FF, 1); // blue sky
-  renderer.setClearColor(0x46446E, 1); // blue sky
-
-  // this will probably bite me in the ass later
   // try to update existing?
-  // document.div.removeChild(oldCanvas);
   $('div.container').append(renderer.domElement);
 
   window.addEventListener( 'resize', onWindowResize, false );
