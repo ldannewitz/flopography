@@ -20,7 +20,20 @@ function animate() {
   //     }
   //
   // }
-  if (flyActive) { render() }
+  if (flyActive) {
+    render();
+    console.log(controls.object.position)
+    if (controls.object.position.x >= 5500) {
+      console.log("hit the x if")
+      controls.object.position.x = -5000
+    } else if (controls.object.position.x <= -5500) {
+      controls.object.position.x = 5000
+    } else if (controls.object.position.z >= 5500) {
+      controls.object.position.z = -5000
+    } else if (controls.object.position.z <= -5500) {
+      controls.object.position.z = 55000
+    }
+  }
 
   renderer.render(scene, camera);
 }

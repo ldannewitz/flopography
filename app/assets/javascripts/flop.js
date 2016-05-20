@@ -22,18 +22,21 @@ $(document).ready(function(){
   })
 
   // Fly button
-  $('#fly').on('click', function(){
+  $(document).on('click', '#fly', function(){
+    // $(this).toggleClass('hidden');
+    $(this).remove();
+    $("<p id='esc'> esc to stop flying</p>").insertAfter('#count')
     flyActive = true;
     init();
     animate();
   })
 
+  // Esc key
   $(document).on('keyup', function(e){
     if (e.keyCode === 27) {
       flyActive = false;
-      init();
-      animate();
+      $('<button id="fly" type="submit">Fly!</button>').insertAfter('#count');
+      $('#esc').remove();
     };
-
   })
 })
